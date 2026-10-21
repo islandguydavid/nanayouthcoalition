@@ -1,0 +1,670 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Nanaimo Youth Coalition brings young people, community organizations and neighbours together to build belonging, opportunity and a stronger future in Nanaimo.">
+  <meta name="theme-color" content="#0a4f58">
+  <title>Nanaimo Youth Coalition | Youth belong here</title>
+  <style>
+    :root {
+      --ink: #0b2630;
+      --ink-soft: #35535a;
+      --cream: #f8f4eb;
+      --paper: #fffdf8;
+      --teal: #0a4f58;
+      --teal-deep: #073c44;
+      --sea: #63c7c5;
+      --sea-pale: #d8f1ef;
+      --coral: #ff7058;
+      --coral-deep: #9f3023;
+      --yellow: #ffc74a;
+      --spruce: #1a6756;
+      --line: rgba(11, 38, 48, .14);
+      --shadow: 0 18px 50px rgba(11, 38, 48, .14);
+      --radius: 1.4rem;
+      --body: "Aptos", "Segoe UI", Helvetica, Arial, sans-serif;
+      --display: Georgia, "Times New Roman", serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 16px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+    button, input, select, textarea { font: inherit; }
+    :focus-visible { outline: 3px solid var(--yellow); outline-offset: 4px; }
+
+    .skip-link {
+      position: fixed;
+      top: .75rem;
+      left: .75rem;
+      z-index: 100;
+      transform: translateY(-180%);
+      padding: .65rem 1rem;
+      border-radius: .5rem;
+      background: var(--yellow);
+      color: var(--ink);
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform .2s ease;
+    }
+    .skip-link:focus { transform: translateY(0); }
+
+    .container { width: min(1160px, calc(100% - 2.5rem)); margin: 0 auto; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      margin: 0 0 .9rem;
+      color: var(--teal);
+      font-size: .76rem;
+      font-weight: 850;
+      letter-spacing: .13em;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      width: .7rem;
+      height: .7rem;
+      border-radius: 50%;
+      background: var(--coral);
+      content: "";
+    }
+    .eyebrow--light { color: var(--sea-pale); }
+    .eyebrow--light::before { background: var(--yellow); }
+    .eyebrow--coral { color: var(--teal); }
+    .eyebrow--coral::before { background: var(--yellow); }
+
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2 {
+      font-family: var(--display);
+      font-weight: 600;
+      letter-spacing: -.045em;
+      line-height: .96;
+    }
+    h1 { margin-bottom: 1.3rem; font-size: clamp(3.25rem, 7.7vw, 7rem); }
+    h2 { margin-bottom: 1.15rem; font-size: clamp(2.35rem, 5vw, 4.5rem); }
+    h3 { margin-bottom: .65rem; font-size: 1.2rem; line-height: 1.15; }
+    .lead { color: var(--ink-soft); font-size: clamp(1.1rem, 2.15vw, 1.32rem); line-height: 1.55; }
+
+    .site-header {
+      position: absolute;
+      z-index: 10;
+      top: 0;
+      right: 0;
+      left: 0;
+      padding: 1.2rem 0;
+      color: #fff;
+    }
+    .nav-row { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: .7rem;
+      color: #fff;
+      font-size: .92rem;
+      font-weight: 850;
+      line-height: 1.02;
+      letter-spacing: -.02em;
+      text-decoration: none;
+    }
+    .brand-mark { position: relative; width: 2.4rem; height: 2.4rem; flex: none; }
+    .brand-mark span {
+      position: absolute;
+      display: block;
+      width: 1rem;
+      height: 1rem;
+      border-radius: 50%;
+      border: 2px solid var(--yellow);
+    }
+    .brand-mark span:nth-child(1) { top: .18rem; left: .12rem; background: var(--coral); }
+    .brand-mark span:nth-child(2) { top: .18rem; right: .1rem; background: var(--sea); }
+    .brand-mark span:nth-child(3) { bottom: .1rem; left: .69rem; background: var(--yellow); }
+    .site-nav { display: flex; align-items: center; gap: 1.25rem; }
+    .site-nav a { color: #fff; font-size: .88rem; font-weight: 760; text-decoration: none; }
+    .site-nav a:not(.nav-cta) { opacity: .92; }
+    .nav-cta { padding: .65rem .9rem; border-radius: 999px; background: var(--yellow); color: var(--ink) !important; }
+
+    .hero {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      min-height: 780px;
+      padding: 10.3rem 0 4rem;
+      background: var(--teal-deep);
+      color: #fff;
+    }
+    .hero::before {
+      position: absolute;
+      z-index: -2;
+      inset: 0;
+      background:
+        radial-gradient(circle at 83% 23%, rgba(99, 199, 197, .72) 0 1.5%, transparent 1.65%),
+        radial-gradient(circle at 70% 12%, rgba(255, 199, 74, .96) 0 2.6%, transparent 2.75%),
+        radial-gradient(circle at 76% 82%, rgba(255, 112, 88, .78) 0 1.7%, transparent 1.85%),
+        linear-gradient(122deg, #073c44 0%, #0a4f58 46%, #16747a 100%);
+      content: "";
+    }
+    .hero::after {
+      position: absolute;
+      z-index: -1;
+      right: -17rem;
+      bottom: -20rem;
+      width: 58rem;
+      height: 58rem;
+      border: 1px solid rgba(255,255,255,.32);
+      border-radius: 50%;
+      box-shadow: 0 0 0 5rem rgba(255,255,255,.06), 0 0 0 10rem rgba(255,255,255,.045), 0 0 0 16rem rgba(255,255,255,.035);
+      content: "";
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; align-items: end; gap: 3.3rem; }
+    .hero-copy { max-width: 730px; padding-bottom: 2.1rem; }
+    .hero h1 { max-width: 650px; }
+    .hero-lead { max-width: 620px; margin-bottom: 2rem; color: rgba(255,255,255,.86); font-size: clamp(1.1rem, 2.2vw, 1.35rem); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .45rem;
+      min-height: 3.1rem;
+      padding: .8rem 1.15rem;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      font-weight: 850;
+      line-height: 1.1;
+      text-decoration: none;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .button:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,.17); }
+    .button--yellow { background: var(--yellow); color: var(--ink); }
+    .button--ghost { border-color: rgba(255,255,255,.6); color: #fff; }
+    .button--dark { background: var(--teal); color: #fff; }
+    .button--coral { background: var(--coral); color: var(--ink); }
+
+    .hero-art {
+      position: relative;
+      min-height: 414px;
+      padding: 1.15rem;
+    }
+    .hero-art::before, .hero-art::after { position: absolute; content: ""; }
+    .hero-art::before {
+      right: 2rem;
+      bottom: 0;
+      left: 0;
+      height: 90%;
+      border: 2px solid rgba(255,255,255,.88);
+      border-radius: 52% 48% 25% 15% / 28% 37% 55% 47%;
+      transform: rotate(-5deg);
+    }
+    .hero-art::after {
+      top: 2rem;
+      right: 0;
+      width: 10rem;
+      height: 10rem;
+      border-radius: 50%;
+      background: var(--coral);
+      box-shadow: -18rem 17rem 0 -2rem var(--yellow), -11rem 2rem 0 -3.3rem var(--sea);
+    }
+    .hero-image-frame {
+      position: absolute;
+      z-index: 1;
+      top: 2.7rem;
+      right: 3.7rem;
+      bottom: 3.4rem;
+      left: 3.5rem;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.65);
+      border-radius: 1.25rem 4rem 1.25rem 3.5rem;
+      background: linear-gradient(150deg, rgba(99,199,197,.75), rgba(10,79,88,.9));
+      box-shadow: 18px 20px 0 rgba(255,199,74,.9);
+    }
+    .hero-image-frame img { width: 100%; height: 100%; object-fit: cover; mix-blend-mode: luminosity; opacity: .83; }
+    .hero-sticker {
+      position: absolute;
+      z-index: 2;
+      right: 0;
+      bottom: 1rem;
+      width: 11rem;
+      padding: 1rem;
+      border-radius: .4rem;
+      background: var(--paper);
+      color: var(--ink);
+      box-shadow: var(--shadow);
+      font-size: .84rem;
+      font-weight: 850;
+      line-height: 1.2;
+      transform: rotate(7deg);
+    }
+    .hero-sticker span { display: block; margin-bottom: .32rem; color: var(--coral-deep); font-size: .66rem; letter-spacing: .1em; text-transform: uppercase; }
+
+    .intro-band { padding: 1.35rem 0; border-bottom: 1px solid var(--line); background: var(--paper); }
+    .intro-band-grid { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 1.2rem 2rem; }
+    .intro-band strong { max-width: 320px; color: var(--teal); font-size: 1.08rem; line-height: 1.15; }
+    .pill-list { display: flex; flex-wrap: wrap; gap: .55rem; }
+    .pill { padding: .42rem .7rem; border: 1px solid var(--line); border-radius: 999px; color: var(--ink-soft); font-size: .78rem; font-weight: 780; }
+
+    section { padding: 6.2rem 0; }
+    .section-heading { max-width: 730px; }
+    .section-heading .lead { max-width: 650px; margin-bottom: 0; }
+
+    .why-layout { display: grid; grid-template-columns: .87fr 1.13fr; gap: 5rem; align-items: start; }
+    .pull-quote { position: relative; padding: 1.9rem 0 0 2.2rem; color: var(--teal); font-family: var(--display); font-size: clamp(1.65rem, 3.2vw, 2.55rem); line-height: 1.08; letter-spacing: -.035em; }
+    .pull-quote::before { position: absolute; top: 1rem; left: 0; color: var(--coral); font-size: 5rem; line-height: .7; content: "“"; }
+    .why-copy { max-width: 620px; }
+    .why-copy p { margin-bottom: 1.1rem; color: var(--ink-soft); font-size: 1.07rem; }
+    .why-copy p:last-child { margin-bottom: 0; }
+
+    .impact-section { background: var(--sea-pale); }
+    .impact-top { display: grid; grid-template-columns: 1fr .9fr; gap: 3.5rem; align-items: end; margin-bottom: 2.2rem; }
+    .impact-top .lead { color: var(--ink-soft); }
+    .impact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .impact-card { min-height: 245px; padding: 1.5rem; border-radius: var(--radius); background: var(--paper); box-shadow: 0 8px 24px rgba(11,38,48,.07); }
+    .impact-card:nth-child(2) { transform: translateY(1.1rem); background: var(--teal); color: #fff; }
+    .impact-card:nth-child(2) p { color: rgba(255,255,255,.79); }
+    .impact-card:nth-child(3) { background: var(--yellow); }
+    .impact-number { display: block; margin-bottom: 1.1rem; color: var(--coral-deep); font-family: var(--display); font-size: 3.55rem; font-weight: 600; line-height: .85; letter-spacing: -.08em; }
+    .impact-card:nth-child(2) .impact-number { color: var(--yellow); }
+    .impact-card:nth-child(3) .impact-number { color: var(--teal); }
+    .impact-card p { margin: 0; color: var(--ink-soft); }
+
+    .youth-gallery { padding-top: 0; background: var(--sea-pale); }
+    .youth-gallery-grid { display: grid; grid-template-columns: .76fr .76fr 1.08fr; gap: 1rem; align-items: stretch; }
+    .youth-photo { min-height: 300px; margin: 0; overflow: hidden; border-radius: 1.25rem; background: var(--teal); box-shadow: 0 10px 26px rgba(11,38,48,.10); }
+    .youth-photo img { width: 100%; height: 100%; min-height: 300px; object-fit: cover; }
+    .youth-gallery-copy { display: flex; flex-direction: column; justify-content: flex-end; min-height: 300px; padding: 1.7rem; border-radius: 1.25rem; background: var(--teal); color: #fff; }
+    .youth-gallery-copy p:last-child { max-width: 330px; margin-bottom: 0; color: var(--paper); font-size: 1.1rem; }
+
+    .how-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 4rem; align-items: center; }
+    .steps { display: grid; gap: .85rem; }
+    .step { display: grid; grid-template-columns: 3.1rem 1fr; gap: .9rem; padding: 1.15rem 0; border-top: 1px solid var(--line); }
+    .step:last-child { border-bottom: 1px solid var(--line); }
+    .step-number { display: grid; place-items: center; width: 2.55rem; height: 2.55rem; border-radius: 50%; background: var(--coral); color: var(--ink); font-family: var(--display); font-size: 1.3rem; }
+    .step:nth-child(2) .step-number { background: var(--sea); color: var(--ink); }
+    .step:nth-child(3) .step-number { background: var(--yellow); color: var(--ink); }
+    .step p { margin: 0; color: var(--ink-soft); }
+    .how-scribble { position: relative; min-height: 360px; overflow: hidden; border-radius: 55% 45% 42% 58% / 47% 38% 62% 53%; background: var(--teal); }
+    .how-scribble::before {
+      position: absolute;
+      top: 13%;
+      right: 11%;
+      bottom: 13%;
+      left: 11%;
+      border: 2px solid var(--sea);
+      border-radius: 43% 57% 62% 38% / 45% 48% 52% 55%;
+      content: "";
+    }
+    .orbit { position: absolute; border-radius: 50%; }
+    .orbit--one { top: 23%; left: 20%; width: 4.5rem; height: 4.5rem; background: var(--coral); }
+    .orbit--two { top: 47%; right: 20%; width: 5.5rem; height: 5.5rem; background: var(--yellow); }
+    .orbit--three { bottom: 13%; left: 39%; width: 3.4rem; height: 3.4rem; background: var(--sea); }
+    .how-scribble-copy { position: absolute; z-index: 2; top: 50%; right: 1.6rem; left: 1.6rem; color: #fff; font-family: var(--display); font-size: clamp(2rem, 4vw, 3.5rem); line-height: .92; letter-spacing: -.045em; text-align: center; transform: translateY(-50%) rotate(-5deg); }
+
+    .partners-section { padding-bottom: 5.2rem; }
+    .partner-intro { display: grid; grid-template-columns: .82fr 1.18fr; gap: 4rem; align-items: end; margin-bottom: 2rem; }
+    .partner-intro .lead { margin-bottom: 0; }
+    .partners-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .partner-card { display: flex; flex-direction: column; min-height: 270px; padding: 1.55rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); }
+    .partner-badge { margin-bottom: 1.15rem; color: var(--teal); font-size: .7rem; font-weight: 850; letter-spacing: .11em; text-transform: uppercase; }
+    .partner-logo-wrap { display: flex; align-items: center; min-height: 74px; margin-bottom: 1rem; }
+    .partner-logo-wrap img { max-height: 74px; max-width: 210px; object-fit: contain; object-position: left center; }
+    .partner-card h3 { margin-top: auto; }
+    .partner-card p { margin: 0; color: var(--ink-soft); font-size: .94rem; }
+    .partner-card--open { border: 2px dashed rgba(10,79,88,.42); background: transparent; }
+    .add-mark { display: grid; place-items: center; width: 3.55rem; height: 3.55rem; margin-bottom: 1.35rem; border-radius: 50%; background: var(--yellow); color: var(--teal); font-size: 2.1rem; font-weight: 300; }
+
+    .join-section { padding-top: 0; }
+    .join-panel { display: grid; grid-template-columns: 1.05fr .95fr; overflow: hidden; border-radius: 1.8rem; background: var(--coral); color: var(--ink); box-shadow: var(--shadow); }
+    .join-copy { padding: clamp(2rem, 5vw, 4.5rem); }
+    .join-copy h2 { max-width: 590px; margin-bottom: 1.3rem; }
+    .join-copy p { max-width: 565px; color: var(--ink); font-size: 1.1rem; }
+    .join-copy .eyebrow--light { color: var(--ink); }
+    .join-copy .eyebrow--light::before { background: var(--teal); }
+    .join-options { display: grid; align-content: center; gap: .8rem; padding: clamp(1.5rem, 4vw, 3.5rem); background: var(--teal); }
+    .join-option { display: block; padding: 1.2rem 1.2rem 1.15rem; border: 1px solid rgba(255,255,255,.27); border-radius: .9rem; color: #fff; text-decoration: none; transition: background .2s ease, transform .2s ease; }
+    .join-option:hover { background: rgba(255,255,255,.12); transform: translateX(4px); }
+    .join-option strong { display: block; margin-bottom: .1rem; color: var(--yellow); }
+    .join-option span { color: var(--paper); font-size: .91rem; }
+
+    .contact-section { background: var(--paper); }
+    .contact-layout { display: grid; grid-template-columns: .82fr 1.18fr; gap: 5rem; align-items: start; }
+    .contact-copy p { max-width: 455px; color: var(--ink-soft); font-size: 1.08rem; }
+    .contact-note { margin-top: 2rem; padding: 1rem 1.1rem; border-left: 3px solid var(--coral); background: #fff1ec; color: var(--ink-soft); font-size: .9rem; }
+    .contact-note a { color: var(--teal); font-weight: 800; }
+    .form-card { padding: clamp(1.35rem, 3vw, 2.2rem); border-radius: var(--radius); background: var(--cream); box-shadow: 0 10px 30px rgba(11,38,48,.1); }
+    .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .field { display: grid; gap: .4rem; }
+    .field--wide { grid-column: 1 / -1; }
+    label { color: var(--ink); font-size: .87rem; font-weight: 850; }
+    .required { color: var(--coral-deep); }
+    input, select, textarea {
+      width: 100%;
+      min-height: 3rem;
+      padding: .75rem .85rem;
+      border: 1px solid rgba(11,38,48,.23);
+      border-radius: .55rem;
+      background: #fff;
+      color: var(--ink);
+    }
+    textarea { min-height: 8rem; resize: vertical; }
+    input:focus, select:focus, textarea:focus { border-color: var(--teal); outline: 3px solid rgba(99,199,197,.34); }
+    .check-field { display: flex; align-items: flex-start; gap: .65rem; margin: 1.1rem 0; }
+    .check-field input { width: 1.1rem; min-height: 1.1rem; margin-top: .2rem; accent-color: var(--teal); }
+    .check-field label { color: var(--ink-soft); font-size: .82rem; font-weight: 650; line-height: 1.45; }
+    .form-status { min-height: 1.5rem; margin: 1rem 0 0; color: var(--teal); font-weight: 760; }
+    .hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+    .site-footer { padding: 2.3rem 0; background: var(--ink); color: rgba(255,255,255,.82); }
+    .footer-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 1.5rem; }
+    .footer-brand { display: flex; align-items: center; gap: .65rem; color: #fff; font-weight: 850; line-height: 1.05; }
+    .footer-brand .brand-mark { transform: scale(.75); transform-origin: left center; margin-right: -.45rem; }
+    .footer-small { max-width: 440px; margin: .4rem 0 0; font-size: .78rem; line-height: 1.5; }
+    .footer-links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .9rem 1.2rem; font-size: .84rem; }
+    .footer-links a { color: rgba(255,255,255,.88); font-weight: 700; text-decoration: none; }
+    .footer-links a:hover { color: var(--yellow); }
+
+    @media (max-width: 850px) {
+      .hero { min-height: 0; padding-top: 8.5rem; }
+      .hero-grid, .why-layout, .impact-top, .how-grid, .partner-intro, .join-panel, .contact-layout { grid-template-columns: 1fr; }
+      .hero-copy { padding-bottom: 0; }
+      .hero-art { display: none; }
+      .why-layout, .how-grid, .partner-intro, .contact-layout { gap: 2rem; }
+      .impact-grid, .partners-grid, .youth-gallery-grid { grid-template-columns: 1fr; }
+      .impact-card:nth-child(2) { transform: none; }
+      .how-scribble { min-height: 290px; }
+      .join-options { padding-top: 0; }
+      .contact-copy p { max-width: 620px; }
+    }
+    @media (max-width: 650px) {
+      .container { width: min(100% - 1.5rem, 1160px); }
+      .site-header { padding-top: .8rem; }
+      .site-nav a:not(.nav-cta) { display: none; }
+      .brand { font-size: .82rem; }
+      .brand-mark { transform: scale(.88); transform-origin: left center; margin-right: -.15rem; }
+      .hero { padding: 8rem 0 3.25rem; }
+      section { padding: 4.4rem 0; }
+      .intro-band-grid { grid-template-columns: 1fr; gap: .65rem; }
+      .form-grid { grid-template-columns: 1fr; }
+      .field--wide { grid-column: auto; }
+      .footer-row { flex-direction: column; }
+      .footer-links { justify-content: flex-start; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container nav-row">
+      <a class="brand" href="#top" aria-label="Nanaimo Youth Coalition home">
+        <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span>Nanaimo<br>Youth Coalition</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#partners">Partners</a>
+        <a href="#contact" class="nav-cta">Connect with us</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow eyebrow--light">A new grassroots partnership in Nanaimo</p>
+          <h1 id="hero-title">Every young person deserves a place to belong.</h1>
+          <p class="hero-lead">Nanaimo Youth Coalition brings young people, local organizations and neighbours together to grow connection, opportunity and a stronger future—side by side.</p>
+          <div class="hero-actions">
+            <a class="button button--yellow" href="#contact">Build with us <span aria-hidden="true">→</span></a>
+            <a class="button button--ghost" href="#about">See what we’re building</a>
+          </div>
+        </div>
+        <div class="hero-art">
+          <div class="hero-image-frame">
+            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663030986142/JGDxaUvcXIGpmQgC.webp" alt="Young people collaborating around a community project table outdoors.">
+          </div>
+          <div class="hero-sticker"><span>Our starting point</span>Youth voice is the work, not an afterthought.</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="intro-band" aria-label="Coalition commitments">
+      <div class="container intro-band-grid">
+        <strong>Grassroots. Youth-centred. Better together.</strong>
+        <div class="pill-list" aria-label="Commitments">
+          <span class="pill">Listening first</span>
+          <span class="pill">Meaningful connection</span>
+          <span class="pill">Shared community action</span>
+          <span class="pill">Room for more partners</span>
+        </div>
+      </div>
+    </div>
+
+    <section id="about" aria-labelledby="about-title">
+      <div class="container why-layout">
+        <div>
+          <p class="eyebrow">Why a coalition</p>
+          <h2 id="about-title">Young people are already shaping Nanaimo. We’re here to back them.</h2>
+          <p class="pull-quote">When people and programs connect, support becomes easier to find—and harder to fall through.</p>
+        </div>
+        <div class="why-copy">
+          <p>Growing up should come with people who listen, spaces that feel safe and pathways that feel possible. Yet support can be fragmented, hard to find or out of reach at the moment it matters most.</p>
+          <p>Nanaimo Youth Coalition is a new table for people who care about young people. We are convening relationships across the community so youth can find belonging, trusted support and meaningful opportunities without having to navigate it all alone.</p>
+          <p>We are starting small, learning in public and making room for more voices—including the young people whose experience should guide what comes next.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="impact-section" aria-labelledby="impact-title">
+      <div class="container">
+        <div class="impact-top">
+          <div class="section-heading">
+            <p class="eyebrow">What we want to make possible</p>
+            <h2 id="impact-title">A community where support feels connected.</h2>
+          </div>
+          <p class="lead">We are not creating another silo. We are strengthening the bridges between people, places and possibilities.</p>
+        </div>
+        <div class="impact-grid">
+          <article class="impact-card">
+            <span class="impact-number">01</span>
+            <h3>Belonging</h3>
+            <p>Young people can find welcoming relationships and places where they are known, included and valued.</p>
+          </article>
+          <article class="impact-card">
+            <span class="impact-number">02</span>
+            <h3>Voice</h3>
+            <p>Young people help shape the conversations, priorities and action that affect their lives.</p>
+          </article>
+          <article class="impact-card">
+            <span class="impact-number">03</span>
+            <h3>Pathways</h3>
+            <p>Community partners connect the dots between mentoring, wellbeing, housing, learning and opportunity.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="youth-gallery" aria-labelledby="gallery-title">
+      <div class="container youth-gallery-grid">
+        <figure class="youth-photo">
+          <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663030986142/ScrOfmtIfbuughgi.webp" alt="Young people leading a creative community workshop together.">
+        </figure>
+        <figure class="youth-photo">
+          <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663030986142/JxZipoEBvPXXBCTv.webp" alt="Young people sharing ideas in a relaxed outdoor peer conversation.">
+        </figure>
+        <div class="youth-gallery-copy">
+          <p class="eyebrow eyebrow--light">Young people lead</p>
+          <h2 id="gallery-title">Real connection starts with being seen.</h2>
+          <p>The coalition will make more room for young people to create, contribute and shape what happens next.</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="how-title">
+      <div class="container how-grid">
+        <div>
+          <p class="eyebrow">How we’ll move together</p>
+          <h2 id="how-title">Start with people. Build what’s useful.</h2>
+          <div class="steps">
+            <article class="step">
+              <span class="step-number" aria-hidden="true">1</span>
+              <div><h3>Listen with young people</h3><p>Make space for youth to name what they need, what is working and what needs to change.</p></div>
+            </article>
+            <article class="step">
+              <span class="step-number" aria-hidden="true">2</span>
+              <div><h3>Link people and programs</h3><p>Bring caring adults, local organizations and community resources into clearer relationship with one another.</p></div>
+            </article>
+            <article class="step">
+              <span class="step-number" aria-hidden="true">3</span>
+              <div><h3>Build the next opportunity</h3><p>Turn shared learning into practical action that helps more young people feel connected and able to thrive.</p></div>
+            </article>
+          </div>
+        </div>
+        <div class="how-scribble" aria-hidden="true">
+          <span class="orbit orbit--one"></span><span class="orbit orbit--two"></span><span class="orbit orbit--three"></span>
+          <div class="how-scribble-copy">Nothing about young people<br>without young people.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="partners-section" id="partners" aria-labelledby="partners-title">
+      <div class="container">
+        <div class="partner-intro">
+          <div>
+            <p class="eyebrow">Our founding partners</p>
+            <h2 id="partners-title">Better collaboration starts with trust.</h2>
+          </div>
+          <p class="lead">Nanaimo Youth Coalition is beginning with partners who already show up for young people. We are inviting others who share this commitment to help shape the work.</p>
+        </div>
+        <div class="partners-grid">
+          <article class="partner-card">
+            <div class="partner-badge">Founding partner</div>
+            <div class="partner-logo-wrap">
+              <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663030986142/QsgRjkAgqWzdURny.jpg" alt="Big Brothers Big Sisters of Central Vancouver Island">
+            </div>
+            <h3>BBBSCVI</h3>
+            <p>Creating life-changing mentoring relationships that help young people realize their potential.</p>
+          </article>
+          <article class="partner-card">
+            <div class="partner-badge">Founding partner</div>
+            <div class="partner-logo-wrap">
+              <img src="https://nysa.bc.ca/wp-content/uploads/2022/11/2022-website-main-logo.png" alt="Nanaimo Youth Services Association">
+            </div>
+            <h3>Nanaimo Youth Services</h3>
+            <p>Supporting youth with learning opportunities and the tools to move toward independence.</p>
+          </article>
+          <article class="partner-card partner-card--open">
+            <div class="add-mark" aria-hidden="true">+</div>
+            <div class="partner-badge">There is room at the table</div>
+            <h3>Your organization could help shape what’s next.</h3>
+            <p>Connect if your work, perspective or resources can help young people in Nanaimo thrive.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="join-section" aria-labelledby="join-title">
+      <div class="container">
+        <div class="join-panel">
+          <div class="join-copy">
+            <p class="eyebrow eyebrow--light">Make room for possibility</p>
+            <h2 id="join-title">The coalition gets stronger when more of Nanaimo is in it.</h2>
+            <p>Whether you are a young person, a parent, a community organization, a local business or someone who simply cares, there is a role for you in building a community where youth can belong and thrive.</p>
+          </div>
+          <div class="join-options">
+            <a class="join-option" href="#contact"><strong>I represent an organization</strong><span>Explore a partnership or shared initiative.</span></a>
+            <a class="join-option" href="#contact"><strong>I want to support the work</strong><span>Share an idea, resource, connection or encouragement.</span></a>
+            <a class="join-option" href="#contact"><strong>I’m a young person</strong><span>Tell us what would make a real difference.</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact" aria-labelledby="contact-title">
+      <div class="container contact-layout">
+        <div class="contact-copy">
+          <p class="eyebrow eyebrow--coral">Let’s connect</p>
+          <h2 id="contact-title">Bring your perspective to the table.</h2>
+          <p>We are at the beginning, and that is exactly why your voice matters. Tell us how you would like to be part of the conversation.</p>
+          <p class="contact-note">Prefer email? Write to <a href="mailto:jerry@bigscvi.ca?subject=Nanaimo%20Youth%20Coalition%20Inquiry">jerry@bigscvi.ca</a> and include “Nanaimo Youth Coalition” in the subject line.</p>
+        </div>
+        <div class="form-card">
+          <!-- FormSubmit sends submissions to the current coalition administrative recipient. The recipient must complete FormSubmit's one-time confirmation email before the form accepts live submissions. -->
+          <form action="https://formsubmit.co/jerry@bigscvi.ca" method="POST">
+            <input type="hidden" name="_subject" value="New Nanaimo Youth Coalition website inquiry">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="true">
+            <div class="hp-field" aria-hidden="true">
+              <label for="website">Leave this field blank</label>
+              <input id="website" name="_honey" type="text" tabindex="-1" autocomplete="off">
+            </div>
+            <div class="form-grid">
+              <div class="field">
+                <label for="name">Name <span class="required" aria-hidden="true">*</span></label>
+                <input id="name" name="name" type="text" autocomplete="name" required>
+              </div>
+              <div class="field">
+                <label for="email">Email <span class="required" aria-hidden="true">*</span></label>
+                <input id="email" name="email" type="email" autocomplete="email" required>
+              </div>
+              <div class="field field--wide">
+                <label for="connection">I’m reaching out as <span class="required" aria-hidden="true">*</span></label>
+                <select id="connection" name="connection" required>
+                  <option value="" selected disabled>Select one</option>
+                  <option value="A young person">A young person</option>
+                  <option value="A parent or caregiver">A parent or caregiver</option>
+                  <option value="A community organization">A community organization</option>
+                  <option value="A local business or supporter">A local business or supporter</option>
+                  <option value="A community member">A community member</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="field field--wide">
+                <label for="message">What would you like to share? <span class="required" aria-hidden="true">*</span></label>
+                <textarea id="message" name="message" required></textarea>
+              </div>
+            </div>
+            <div class="check-field">
+              <input id="consent" name="consent" type="checkbox" value="I consent to be contacted about this inquiry" required>
+              <label for="consent">I agree that Nanaimo Youth Coalition may use these details to respond to this inquiry. <span class="required" aria-hidden="true">*</span></label>
+            </div>
+            <button class="button button--dark" type="submit">Send my message <span aria-hidden="true">→</span></button>
+            <p class="form-status">After you send, you will see FormSubmit’s verification or confirmation message in this window.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <div>
+        <div class="footer-brand"><span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span><span>Nanaimo Youth Coalition</span></div>
+        <p class="footer-small">A grassroots partnership growing connection, opportunity and belonging for young people in Nanaimo.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#partners">Partners</a>
+        <a href="#contact">Contact</a>
+        <a href="mailto:jerry@bigscvi.ca?subject=Nanaimo%20Youth%20Coalition%20Inquiry">Email us</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

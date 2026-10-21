@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Nanaimo Youth Coalition mark</title>
+  <desc id="desc">Three connected circles in coral, seafoam, and yellow on a teal rounded square.</desc>
+  <rect width="512" height="512" rx="112" fill="#0A4F58"/>
+  <path d="M172 192L340 192M210 254L256 334M302 254L256 334" stroke="#F8F4EB" stroke-width="18" stroke-linecap="round" opacity=".9"/>
+  <circle cx="172" cy="178" r="74" fill="#FF7058" stroke="#FFC74A" stroke-width="12"/>
+  <circle cx="340" cy="178" r="74" fill="#63C7C5" stroke="#FFC74A" stroke-width="12"/>
+  <circle cx="256" cy="348" r="74" fill="#FFC74A" stroke="#F8F4EB" stroke-width="12"/>
+</svg>
